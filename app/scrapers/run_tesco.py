@@ -40,4 +40,4 @@ def run_tesco(keyword):
         print("Found At: ", found_at)
         print("URL: ", index_url, "\n\n")
 
-    return json.dumps(results)
+    return results
