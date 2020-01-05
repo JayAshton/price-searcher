@@ -1,8 +1,7 @@
 from flask import render_template
 from flask import request
 
-from app.scrapers.run_tesco import run_tesco
-from app.scrapers.run_morrisons import run_morrisons
+from app.search.handle_search import Search
 
 from app import app
 
@@ -16,11 +15,7 @@ def search():
     # Get keyword
     keyword = request.form.get("keyword")
 
-    # Run scraper and get results
-    # These should be made asynchronous
-    tesco_results = run_tesco(keyword)
-    morrisons_results = run_morrisons(keyword)
+    # Handle search
+    search_results = Search.handle_search(keyword)
 
-    return render_template('results.html',
-    tesco_results=tesco_results,
-    morrisons_results=morrisons_results)
+    return search_results
