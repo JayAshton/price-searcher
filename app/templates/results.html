@@ -4,8 +4,55 @@
     </head>
     <body>
         <h1>Tesco Results:</h1>
-        <p>{{ tesco_results }}</p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Currency</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Found At</th>
+                        <th>URL</th>
+                    </tr>
+                    {% for k,v in tesco_results.items() %}
+                    <tr>
+                        <td>{{ v['title'] }}</td>
+                        <td>{{ v['price'] }}</td>
+                        <td>{{ v['currency'] }}</td>
+                        <td>{{ v['description'] }}</td>
+                        <td><img width="200" width="200" src="{{ v['image'] }}"></td>
+                        <td>{{ v['found_at'] }}</td>
+                        <td>{{ k }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         <h1>Morrisons Results:</h1>
-        <p>{{ morrisons_results }}</p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Currency</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Found At</th>
+                    <th>URL</th>
+                </tr>
+                {% for k,v in morrisons_results.items() %}
+                <tr>
+                    <td>{{ v['title'] }}</td>
+                    <td>{{ v['price'] }}</td>
+                    <td>{{ v['currency'] }}</td>
+                    <td>{{ v['description'] }}</td>
+                    <td><img width="200" width="200" src="{{ v['image'] }}"></td>
+                    <td>{{ v['found_at'] }}</td>
+                    <td>{{ k }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </body>
 </html>
