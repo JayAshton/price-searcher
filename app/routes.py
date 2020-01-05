@@ -17,7 +17,10 @@ def search():
     keyword = request.form.get("keyword")
 
     # Run scraper and get results
-    results = run_tesco(keyword)
-    print(results)
+    # These should be made asynchronous
+    tesco_results = run_tesco(keyword)
+    morrisons_results = run_morrisons(keyword)
 
-    return render_template('results.html', results=results)
+    return render_template('results.html',
+    tesco_results=tesco_results,
+    morrisons_results=morrisons_results)
