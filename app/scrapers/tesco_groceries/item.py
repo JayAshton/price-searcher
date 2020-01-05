@@ -20,7 +20,7 @@ class Item:
         return title
 
     def get_price(tree):
-        price = tree.xpath('//div[@class="price-per-sellable-unit price-per-sellable-unit--price price-per-sellable-unit--price-per-item"]//span[@data-auto="price-value"]/text()')
+        price = tree.xpath('//div[@class="product-details-tile__main"]//div[@class="price-control-wrapper"]//span[@data-auto="price-value"]/text()')
         price = ''.join(price)
 
         return price

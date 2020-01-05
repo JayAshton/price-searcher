@@ -17,7 +17,7 @@ def search():
     keyword = request.form.get("keyword")
 
     # Run scraper and get results
-    results = run_morrisons(keyword)
+    results = run_tesco(keyword)
     print(results)
 
     return render_template('results.html', results=results)

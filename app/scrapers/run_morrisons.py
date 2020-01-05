@@ -1,5 +1,6 @@
 from app.scrapers.morrisons_groceries.index import Index
 from app.scrapers.morrisons_groceries.item import Item
+import json
 
 def run_morrisons(keyword):
     # Index functions
@@ -39,4 +40,4 @@ def run_morrisons(keyword):
         print("Found At: ", found_at)
         print("URL: ", index_url, "\n\n")
 
-    return results
+    return json.dumps(results)

@@ -21,7 +21,7 @@ class Index:
 
         # Gather raw URLS
         tree = html.fromstring(page_content.content)
-        raw_index_urls = tree.xpath('//h3[@class="sc-jzJRlG eTAWYm"]//a/@href')
+        raw_index_urls = tree.xpath('//div[@class="product-details--content"]//h3/a/@href')
 
         # Pre-append tesco.com to each item in list
         prepend_string = "https://tesco.com"
