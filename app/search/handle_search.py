@@ -12,4 +12,3 @@ class Search():
         return render_template('results.html',
         tesco_results=tesco_results,
         morrisons_results=morrisons_results)
-
