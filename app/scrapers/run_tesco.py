@@ -7,6 +7,9 @@ def run_tesco(keyword):
     format_string = Index.create_format_string(keyword)
     index_urls = Index.get_index_urls(format_string)
 
+    # Reduce index_urls to 10 items
+    index_urls = index_urls[:10]
+
     results = {}
 
     # Page functions
