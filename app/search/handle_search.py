@@ -1,6 +1,5 @@
 from flask import render_template
 from app import app
-from threading import Thread
 
 from app.scrapers.run_tesco import run_tesco
 from app.scrapers.run_morrisons import run_morrisons

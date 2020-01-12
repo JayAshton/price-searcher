@@ -12,6 +12,9 @@ def index():
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
+    # Display searching page
+    render_template('searching.html')
+
     # Get keyword
     keyword = request.form.get("keyword")
 

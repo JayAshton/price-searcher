@@ -1,58 +1,44 @@
 <html>
     <head>
         <title>Search for the best prices</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Tesco Results:</h1>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Currency</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Found At</th>
-                        <th>URL</th>
-                    </tr>
-                    {% for k,v in tesco_results.items() %}
-                    <tr>
-                        <td>{{ v['title'] }}</td>
-                        <td>{{ v['price'] }}</td>
-                        <td>{{ v['currency'] }}</td>
-                        <td>{{ v['description'] }}</td>
-                        <td><img width="200" width="200" src="{{ v['image'] }}"></td>
-                        <td>{{ v['found_at'] }}</td>
-                        <td>{{ k }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        <h1>Morrisons Results:</h1>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Currency</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Found At</th>
-                    <th>URL</th>
-                </tr>
-                {% for k,v in morrisons_results.items() %}
-                <tr>
-                    <td>{{ v['title'] }}</td>
-                    <td>{{ v['price'] }}</td>
-                    <td>{{ v['currency'] }}</td>
-                    <td>{{ v['description'] }}</td>
-                    <td><img width="200" width="200" src="{{ v['image'] }}"></td>
-                    <td>{{ v['found_at'] }}</td>
-                    <td>{{ k }}</td>
-                </tr>
+        <div class="container">
+            <div class="row">
+                {% for k,v in tesco_results.items() %}
+                <div class="col-sm-6">
+                    <div class="card" style="width: 18rem;">
+                        <img width="200" width="200" src="{{ v['image'] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ v['title'] }}</h5>
+                            <p class="card-text"><b>Price: </b>{{ v['price'] }} {{ v['currency'] }}</p>
+                            <p class="card-text"><b>Description: </b>{{ v['description'] }}</p>
+                            <p class="card-text"><b>Found At: </b>{{ v['found_at'] }}</p>
+                            <p class="card-text"><b>URL: </b>{{ k }}</p>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+            <div class="row">
+                {% for k,v in morrisons_results.items() %}
+                <div class="col-sm-6">
+                    <div class="card" style="width: 18rem;">
+                        <img width="200" width="200" src="{{ v['image'] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ v['title'] }}</h5>
+                            <p class="card-text"><b>Price: </b>{{ v['price'] }} {{ v['currency'] }}</p>
+                            <p class="card-text"><b>Description: </b>{{ v['description'] }}</p>
+                            <p class="card-text"><b>Found At: </b>{{ v['found_at'] }}</p>
+                            <p class="card-text"><b>URL: </b>{{ k }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </body>
 </html>

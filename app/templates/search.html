@@ -1,13 +1,21 @@
 <html>
     <head>
         <title>Search for the best prices</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Search below:</h1>
-
-        <form id="search" method="POST" action="/search">
-            <input type="text" name="keyword"><br>
-            <input type="submit" id="submit" value="Search">
-        </form>
+        <div class="jumbotron">
+            <h1 class="display-4">Search Supermarkets</h1>
+            <hr class="my-4">
+            <form id="search" method="POST" action="/search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="keyword" aria-describedby="searchHelp">
+                    <small id="searchHelp" class="form-text text-muted">Input your search term and we will check the supermarket websites!</small>
+                </div>
+                <input type="submit" class="form-control" id="submit" value="Search">
+            </form>
+        </div>
     </body>
 </html>
