@@ -1,13 +1,32 @@
 <html>
     <head>
         <title>Search for the best prices</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>Search below:</h1>
-
-        <form id="search" method="POST" action="/search">
-            <input type="text" name="keyword"><br>
-            <input type="submit" id="submit" value="Search">
-        </form>
+        <div id="search-block" class="jumbotron">
+            <h1 class="display-4">Search Supermarkets</h1>
+            <hr class="my-4">
+            <form id="search" method="POST" action="/search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="keyword" aria-describedby="searchHelp">
+                    <small id="searchHelp" class="form-text text-muted">Input your search term and we will check the supermarket websites!</small>
+                </div>
+                <input type="submit" class="form-control" id="submit" onclick="searching();" value="Search">
+            </form>
+        </div>
+        <div class="container" id="searching">
+            <h1>Searching...</h1><br>
+            <img id="searching-img" class="mx-auto d-block" src="../static/img/searching.gif">
+        </div>
+        <script type="text/javascript">
+            function searching(){
+                $("#searching").show();
+                $("#search-block").hide();
+            }
+        </script>
     </body>
 </html>

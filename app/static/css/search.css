@@ -1,0 +1,5 @@
+div#searching {
+    display: none;
+    cursor: wait;
+    text-align: center;
+}
