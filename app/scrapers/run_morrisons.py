@@ -1,8 +1,9 @@
 from app.scrapers.morrisons_groceries.index import Index
 from app.scrapers.morrisons_groceries.item import Item
 import json
+import asyncio
 
-def run_morrisons(keyword):
+async def run_morrisons(keyword):
     # Index functions
     format_string = Index.create_format_string(keyword)
     index_urls = Index.get_index_urls(format_string)
@@ -42,5 +43,7 @@ def run_morrisons(keyword):
         print("Image: ", image)
         print("Found At: ", found_at)
         print("URL: ", index_url, "\n\n")
+
+    await asyncio.sleep(0.0001)
 
     return results
