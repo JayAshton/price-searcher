@@ -15,12 +15,24 @@ class Index:
 
         return format_string
 
-    def get_index_urls(format_string):
-        # Make a request using the format string
+    def visit_index(format_string):
         page_content = requests.get(format_string)
-
-        # Gather raw URLS
         tree = html.fromstring(page_content.content)
+
+        return tree
+
+    def index_validation(tree):
+        validation_xpath = tree.xpath('//ul[@class="fops fops-regular fops-shelf"]')
+        if not validation_xpath:
+            validation_result = False
+        elif validation_xpath:
+            validation_result = True
+        else:
+            print("Error validating item page")
+
+        return validation_result
+
+    def get_index_urls(tree):
         raw_index_urls = tree.xpath('//ul[@class="fops fops-regular fops-shelf"]//div[@class="fop-contentWrapper"]/a[1]/@href')
 
         # Pre-append https://groceries.morrisons.com to each item in list

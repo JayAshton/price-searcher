@@ -8,10 +8,16 @@ class Item:
 
         return tree
 
-    def item_validation():
-        # We need to add validation to ensure that we are on the correct page
-        # We might be redirected or be blocked, do not want to scrape random stuff
-        pass
+    def item_validation(tree):
+        item_validation_xpath = tree.xpath('//div[@class="product-details-tile"]')
+        if not item_validation_xpath:
+            item_validation_result = False
+        elif item_validation_xpath:
+            item_validation_result = True
+        else:
+            print("Error validating item page")
+
+        return item_validation_result
 
     def get_title(tree):
         title = tree.xpath('//h1[@class="product-details-tile__title"]/text()')
