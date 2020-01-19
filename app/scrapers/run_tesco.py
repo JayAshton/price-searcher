@@ -52,6 +52,7 @@ def run_tesco(keyword):
             print("Found At: ", found_at)
             print("URL: ", index_url, "\n\n")
         elif not item_validation_result:
+            del results[index_url]
             print("Item validation failed for {}".format(index_url))
 
     return results
