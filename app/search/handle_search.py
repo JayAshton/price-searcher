@@ -21,6 +21,10 @@ class Search():
         morrisons_scraper.join()
         morrisons_results = morrisons_queue.get()
 
+        # https://stackoverflow.com/questions/31665328/python-3-multiprocessing-queue-deadlock-when-calling-join-before-the-queue-is-em
+        # If description is not limited, queue is full and process hangs
+        # Queue should be emptied as after each result
+
         return render_template('results.html',
         tesco_results=tesco_results,
         morrisons_results=morrisons_results)

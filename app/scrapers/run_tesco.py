@@ -15,7 +15,7 @@ def run_tesco(keyword, tesco_queue):
     elif not index_validation_result:
         print("Index validation failed for {} \n\n".format(format_string))
 
-    index_urls = index_urls[:6]
+    index_urls = index_urls[:9]
 
     results = {}
 
