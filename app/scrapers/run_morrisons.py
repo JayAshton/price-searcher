@@ -1,8 +1,10 @@
 from app.scrapers.morrisons_groceries.index import Index
 from app.scrapers.morrisons_groceries.item import Item
+
+from multiprocessing import Process, Queue
 import json
 
-def run_morrisons(keyword):
+def run_morrisons(keyword, morrisons_queue):
     # Index functions
     format_string = Index.create_format_string(keyword)
     tree = Index.visit_index(format_string)
@@ -13,8 +15,7 @@ def run_morrisons(keyword):
     elif not index_validation_result:
         print("Index validation failed for {} \n\n".format(format_string))
 
-    # Reduce index_urls to 10 items
-    index_urls = index_urls[:10]
+    index_urls = index_urls[:6]
 
     results = {}
 
@@ -54,4 +55,5 @@ def run_morrisons(keyword):
         elif not item_validation_result:
             print("Item validation failed for {} \n\n".format(index_url))
 
+    morrisons_queue.put(results)
     return results

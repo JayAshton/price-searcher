@@ -1,8 +1,10 @@
 from app.scrapers.tesco_groceries.index import Index
 from app.scrapers.tesco_groceries.item import Item
+
+from multiprocessing import Process, Queue
 import json
 
-def run_tesco(keyword):
+def run_tesco(keyword, tesco_queue):
     # Index functions
     format_string = Index.create_format_string(keyword)
     tree = Index.visit_index(format_string)
@@ -13,8 +15,7 @@ def run_tesco(keyword):
     elif not index_validation_result:
         print("Index validation failed for {} \n\n".format(format_string))
 
-    # Reduce index_urls to 10 items
-    index_urls = index_urls[:10]
+    index_urls = index_urls[:6]
 
     results = {}
 
@@ -55,4 +56,5 @@ def run_tesco(keyword):
             del results[index_url]
             print("Item validation failed for {}".format(index_url))
 
+    tesco_queue.put(results)
     return results
