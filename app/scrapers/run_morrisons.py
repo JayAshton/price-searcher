@@ -37,7 +37,7 @@ def run_morrisons(keyword, morrisons_queue):
             results[index_url]['currency'] = currency
 
             description = Item.get_description(tree)
-            results[index_url]['description'] = description
+            results[index_url]['description'] = description[:200]
 
             image = Item.get_image(tree)
             results[index_url]['image'] = image
@@ -48,7 +48,7 @@ def run_morrisons(keyword, morrisons_queue):
             print("Title: ", title)
             print("Price: ", price)
             print("Currency: ", currency)
-            print("Description: ", description)
+            print("Description: ", description[:200])
             print("Image: ", image)
             print("Found At: ", found_at)
             print("URL: ", index_url, "\n\n")

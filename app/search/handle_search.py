@@ -17,9 +17,8 @@ class Search():
         morrisons_scraper.start()
 
         tesco_scraper.join()
-        morrisons_scraper.join()
-
         tesco_results = tesco_queue.get()
+        morrisons_scraper.join()
         morrisons_results = morrisons_queue.get()
 
         return render_template('results.html',

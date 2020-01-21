@@ -3,7 +3,11 @@ from lxml import html
 
 class Item:
     def visit_item(item_url):
-        page_content = requests.get(item_url)
+        try:
+            page_content = requests.get(item_url, timeout=5)
+        except:
+            print("Error: Page timed out/Unable to visit page")
+
         tree = html.fromstring(page_content.content)
 
         return tree
