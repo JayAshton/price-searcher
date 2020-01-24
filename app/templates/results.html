@@ -18,7 +18,10 @@
                             <p class="card-text"><b>Price: </b>{{ v['price'] }} {{ v['currency'] }}</p>
                             <p class="card-text"><b>Description: </b>{{ v['description'] }}</p>
                             <p class="card-text"><b>Found At: </b>{{ v['found_at'] }}</p>
-                            <p class="card-text"><b>URL: </b>{{ k }}</p>
+                            <p class="card-text">
+                                <b>URL: </b>
+                                <a href="{{ k }}">{{ k }}</a>
+                            </p>
                             <a href="#" class="btn btn-primary">Add to Basket</a>
                         </div>
                     </div>
@@ -37,7 +40,10 @@
                             <p class="card-text"><b>Price: </b>{{ v['price'] }} {{ v['currency'] }}</p>
                             <p class="card-text"><b>Description: </b>{{ v['description'] }}</p>
                             <p class="card-text"><b>Found At: </b>{{ v['found_at'] }}</p>
-                            <p class="card-text"><b>URL: </b>{{ k }}</p>
+                            <p class="card-text">
+                                <b>URL: </b>
+                                <a href="{{ k }}">{{ k }}</a>
+                            </p>
                             <a href="#" class="btn btn-primary">Add to Basket</a>
                         </div>
                     </div>

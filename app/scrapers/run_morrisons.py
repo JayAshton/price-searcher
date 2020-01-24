@@ -1,14 +1,21 @@
 from app.scrapers.morrisons_groceries.index import Index
 from app.scrapers.morrisons_groceries.item import Item
+
+from multiprocessing import Process, Queue
 import json
 
-def run_morrisons(keyword):
+def run_morrisons(keyword, morrisons_queue):
     # Index functions
     format_string = Index.create_format_string(keyword)
-    index_urls = Index.get_index_urls(format_string)
+    tree = Index.visit_index(format_string)
+    index_validation_result = Index.index_validation(tree)
 
-    # Reduce index_urls to 10 items
-    index_urls = index_urls[:10]
+    if index_validation_result:
+        index_urls = Index.get_index_urls(tree)
+    elif not index_validation_result:
+        print("Index validation failed for {} \n\n".format(format_string))
+
+    index_urls = index_urls[:9]
 
     results = {}
 
@@ -17,30 +24,36 @@ def run_morrisons(keyword):
         tree = Item.visit_item(index_url)
         results[index_url] = {}
 
-        title = Item.get_title(tree)
-        results[index_url]['title'] = title
+        item_validation_result = Item.item_validation(tree)
 
-        price = Item.get_price(tree)
-        results[index_url]['price'] = price
+        if item_validation_result:
+            title = Item.get_title(tree)
+            results[index_url]['title'] = title
 
-        currency = Item.get_currency(tree)
-        results[index_url]['currency'] = currency
+            price = Item.get_price(tree)
+            results[index_url]['price'] = price
 
-        description = Item.get_description(tree)
-        results[index_url]['description'] = description
+            currency = Item.get_currency(tree)
+            results[index_url]['currency'] = currency
 
-        image = Item.get_image(tree)
-        results[index_url]['image'] = image
+            description = Item.get_description(tree)
+            results[index_url]['description'] = description[:200]
 
-        found_at = "Morrisons"
-        results[index_url]['found_at'] = found_at
+            image = Item.get_image(tree)
+            results[index_url]['image'] = image
 
-        print("Title: ", title)
-        print("Price: ", price)
-        print("Currency: ", currency)
-        print("Description: ", description)
-        print("Image: ", image)
-        print("Found At: ", found_at)
-        print("URL: ", index_url, "\n\n")
+            found_at = "Morrisons"
+            results[index_url]['found_at'] = found_at
 
+            print("Title: ", title)
+            print("Price: ", price)
+            print("Currency: ", currency)
+            print("Description: ", description[:200])
+            print("Image: ", image)
+            print("Found At: ", found_at)
+            print("URL: ", index_url, "\n\n")
+        elif not item_validation_result:
+            print("Item validation failed for {} \n\n".format(index_url))
+
+    morrisons_queue.put(results)
     return results

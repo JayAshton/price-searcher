@@ -15,12 +15,24 @@ class Index:
 
         return format_string
 
-    def get_index_urls(format_string):
-        # Make a request using the format string
+    def visit_index(format_string):
         page_content = requests.get(format_string)
-
-        # Gather raw URLS
         tree = html.fromstring(page_content.content)
+
+        return tree
+
+    def index_validation(tree):
+        validation_xpath = tree.xpath('//div[@id="product-list"]')
+        if not validation_xpath:
+            validation_result = False
+        elif validation_xpath:
+            validation_result = True
+        else:
+            print("Error validating item page")
+
+        return validation_result
+
+    def get_index_urls(tree):
         raw_index_urls = tree.xpath('//div[@class="product-details--content"]//h3/a/@href')
 
         # Pre-append tesco.com to each item in list
