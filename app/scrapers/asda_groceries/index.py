@@ -5,7 +5,7 @@ class Index:
     def create_format_string(keyword):
         # Need to add support for multiple pages
         # Page generation template {NUM} incremental
-        format_string = "https://www.tesco.com/groceries/en-GB/search?query={}".format(keyword)
+        format_string = "https://groceries.asda.com/search/{}".format(keyword)
 
         return format_string
 
@@ -16,7 +16,10 @@ class Index:
         return tree
 
     def index_validation(tree):
-        validation_xpath = tree.xpath('//div[@id="product-list"]')
+        validation_xpath = tree.xpath('//section[@class="products-tab products-tab__body"]')
+        # Asda seem to block requests, "outdated browser version
+        # May require use of web services/selenium/puppeteer
+        import ipdb; ipdb.set_trace()
         if not validation_xpath:
             validation_result = False
         elif validation_xpath:
@@ -27,10 +30,10 @@ class Index:
         return validation_result
 
     def get_index_urls(tree):
-        raw_index_urls = tree.xpath('//div[@class="product-details--content"]//h3/a/@href')
+        raw_index_urls = tree.xpath('//div[@class="co-product"]//h3[@class="co-product__title"]//a/@href')
 
         # Pre-append tesco.com to each item in list
-        prepend_string = "https://tesco.com"
+        prepend_string = "https://groceries.asda.com"
         f = [prepend_string + sub for sub in raw_index_urls]
 
         # Clean item URLs

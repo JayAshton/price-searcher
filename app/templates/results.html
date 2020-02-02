@@ -20,7 +20,7 @@
                             <p class="card-text">From: {{ v['found_at'] }}</p>
                             <p class="card-text">
                                 <b>URL: </b>
-                                <a href="{{ k }}">{{ k }}</a>
+                                <a href="{{ k }}" target="_blank">{{ k }}</a>
                             </p>
                         </div>
                         <div class="card-footer">
@@ -44,7 +44,29 @@
                             <p class="card-text">From: {{ v['found_at'] }}</p>
                             <p class="card-text">
                                 <b>URL: </b>
-                                <a href="{{ k }}">{{ k }}</a>
+                                <a href="{{ k }}" target="_blank">{{ k }}</a>
+                            </p>
+                            <a href="#" class="btn btn-primary">Add to Basket</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h1>Asda Results:</h1>
+            <div class="row row-cols-1 row-cols-md-3">
+                {% for k,v in asda_results.items() %}
+                <div class="col mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <img width="200" width="200" src="{{ v['image'] }}">
+                            <h5 class="card-title">{{ v['title'] }}</h5>
+                            <p class="card-text"><b>{{ v['price'] }} {{ v['currency'] }}</b></p>
+                            <p class="card-text">{{ v['description'] }}</p>
+                            <p class="card-text">From: {{ v['found_at'] }}</p>
+                            <p class="card-text">
+                                <b>URL: </b>
+                                <a href="{{ k }}" target="_blank">{{ k }}</a>
                             </p>
                             <a href="#" class="btn btn-primary">Add to Basket</a>
                         </div>
