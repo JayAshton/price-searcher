@@ -2,12 +2,6 @@ import requests
 from lxml import html
 
 class Index:
-    def index_validation():
-        # We need to check that we are on the correct page
-        # We may somehow be navigated/redirected to somewhere else or end up blocked
-        # Need to ensure that the page is the index page, then continue scrape
-        pass
-
     def create_format_string(keyword):
         # Need to add support for multiple pages
         # Page generation template {NUM} incremental
