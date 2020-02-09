@@ -22,7 +22,7 @@ class AsdaAPI:
         return json_results
 
     def get_index_url(item):
-        id = item['shelfId']
+        id = item['id']
         index_url = "https://groceries.asda.com/product/{}".format(id)
 
         return index_url
