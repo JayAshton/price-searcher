@@ -13,7 +13,8 @@ class Item:
         return tree
 
     def item_validation(tree):
-        item_validation_xpath = tree.xpath('//div[@class="productDescription"]')
+        import ipdb; ipdb.set_trace()
+        item_validation_xpath = tree.xpath('//article[@id="overview"]')
         if not item_validation_xpath:
             item_validation_result = False
         elif item_validation_xpath:
@@ -37,7 +38,7 @@ class Item:
         return title
 
     def get_price(tree):
-        price = tree.xpath('//div[@class="typicalPrice"]//meta[@itemprop="price"]/@content')
+        price = tree.xpath('//meta[@itemprop="price"]/@content')
         price = ''.join(price)
 
         return price
@@ -47,7 +48,7 @@ class Item:
         return currency
 
     def get_description(tree):
-        description = tree.xpath('//div[@class="bopSection"]//text()')
+        description = tree.xpath('//div[@class="gn-accordionElement__content gn-accordionElement__content--expanded"]//text()')
         description = ''.join(description)
 
         # Clean
@@ -58,7 +59,7 @@ class Item:
         return description
 
     def get_image(tree):
-        image = tree.xpath('//ul[@id="galleryImages"]//a/@href')
+        image = tree.xpath('(//img[@class="bop-gallery__image"])[1]/@src')
         image = ''.join(image)
         image = image.split("?")[0]
         prepend_string = "https://groceries.morrisons.com"
