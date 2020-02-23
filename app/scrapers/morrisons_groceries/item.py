@@ -19,6 +19,12 @@ class Item:
             item_validation_result = False
         elif item_validation_xpath:
             item_validation_result = True
+
+            page_unavailable = "Morrisons: Page not available"
+            title = tree.xpath('//title//text()')
+            if page_unavailable in title:
+                print("Page is unavailable")
+                item_validation_result = False
         else:
             print("Error validating item page")
 
