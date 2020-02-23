@@ -1,0 +1,16 @@
+{
+    "index_page":
+    {
+        "index_validation" : "",
+        "index_urls" : ""
+    },
+    "item_page":
+    {
+        "item_validation" : "",
+        "title" : "",
+        "price" : "",
+        "currency" : "",
+        "description" : "",
+        "image" : ""
+    }
+}
