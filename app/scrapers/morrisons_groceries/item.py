@@ -13,7 +13,6 @@ class Item:
         return tree
 
     def item_validation(tree):
-        import ipdb; ipdb.set_trace()
         item_validation_xpath = tree.xpath('//article[@id="overview"]')
         if not item_validation_xpath:
             item_validation_result = False
